@@ -1,5 +1,6 @@
-import 'package:sqflite/sqflite.dart';
+import 'package:chopchop/global.dart';
 import 'package:chopchop/user.dart';
+import 'package:sqflite/sqflite.dart';
 
 class DBOperations {
   final Database _database;
@@ -20,21 +21,27 @@ class DBOperations {
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
-  Future<void> deleteRecord(String firstName, String lastName) async {
-    // Map<String, Object> userMap = {
-    //   "id": DateTime.now().millisecond,
-    //   "first_name": firstName,
-    //   "last_name": lastName,
-    // };
+ void lastUser() async {
+    final List<Map<String, dynamic>> maps =
+        await _database.query('users', limit: 1, orderBy: "id");
 
-    // await _database.insert('users', userMap,
-    //     conflictAlgorithm: ConflictAlgorithm.replace);
+    List.generate(maps.length, (i) {
+      print(maps[i]);
+      loggedInUser = User(
+          id: maps[i]["id"],
+          first_name: maps[i]['first_name'],
+          last_name: maps[i]['last_name'],
+          email: maps[i]['email'],
+          password: maps[i]['password']);
+    });
+    
   }
 
   Future<List<User>> users() async {
-    final List<Map<String, dynamic>> maps = await _database.query('users');
+    final List<Map<String, dynamic>> maps = await _database.query(
+      'users',
+    );
 
-    // Convert the List<Map<String, dynamic> into a List<Dog>.
     return List.generate(maps.length, (i) {
       print(maps[i]);
       return User(
@@ -47,28 +54,25 @@ class DBOperations {
     });
   }
 
+  //   Future<List<String>> queryAllRows() async {
+  //   Database db = await instance._initDatabase();
+  //   db.query(table ,columns: [columnname]).then((data){
+  //     List<Map<String,dynamic>> s = data;
+  //     List<String> list = new List();
+  //     for(var x in s){
+  //       x.forEach((k,v)=>list.add(v));
+  //     }
+  //   });
+  //   return list;
+  // }
 
+  //   Future<User> getLogin(String user, String password) async {
 
-    //   Future<List<String>> queryAllRows() async {
-    //   Database db = await instance._initDatabase();
-    //   db.query(table ,columns: [columnname]).then((data){
-    //     List<Map<String,dynamic>> s = data;
-    //     List<String> list = new List();
-    //     for(var x in s){
-    //       x.forEach((k,v)=>list.add(v));
-    //     }
-    //   });
-    //   return list;
-    // }
+  //   var res = await _database.rawQuery("SELECT * FROM user WHERE username = '$user' and password = '$password'");
 
-    //   Future<User> getLogin(String user, String password) async {
-
-    //   var res = await _database.rawQuery("SELECT * FROM user WHERE username = '$user' and password = '$password'");
-
-    //   if (res.length > 0) {
-    //     return new User.fromMap(res.first);
-    //   }
-    //   return null;
-    // }
-  }
-
+  //   if (res.length > 0) {
+  //     return new User.fromMap(res.first);
+  //   }
+  //   return null;
+  // }
+}

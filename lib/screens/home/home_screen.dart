@@ -52,8 +52,9 @@ class HomeScreen extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               vertical: 20, horizontal: 40),
                           color: kPrimaryLightColor,
-                          onPressed: ()  {
-                            print(DBOperations(db).users().toString());
+                          onPressed: () {
+                            landingScreen = WelcomeScreen();
+                            DBOperations(db).users().toString();
                             Navigator.push(
                               context,
                               MaterialPageRoute(
