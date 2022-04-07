@@ -11,11 +11,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   @override
   void initState() {
-
-
     super.initState();
   }
 
@@ -65,7 +62,6 @@ class _HomeScreenState extends State<HomeScreen> {
                               vertical: 20, horizontal: 40),
                           color: kPrimaryLightColor,
                           onPressed: () async {
-
                             SharedPreferences prefs =
                                 await SharedPreferences.getInstance();
                             prefs.remove('email');
