@@ -15,24 +15,39 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
 
+  void userDbIsEmpty() async {
+    int? count =
+        Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM users'));
+    print(count);
+    if (count! > 0) {
+      landingScreen = HomeScreen();
+    } else {
+      landingScreen = WelcomeScreen();
+    }
 
+    @override
+    void initState() {
+      userDbIsEmpty();
+      super.initState();
+    }
 
-  @override
-  void initState() {
-  
-    super.initState();
+    @override
+    Widget build(BuildContext context) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'ChopChop App',
+        theme: ThemeData(
+          //primaryColor: kPrimaryColor,
+          scaffoldBackgroundColor: Colors.white,
+        ),
+        home: landingScreen,
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'ChopChop App',
-      theme: ThemeData(
-        //primaryColor: kPrimaryColor,
-        scaffoldBackgroundColor: Colors.white,
-      ),
-      home: landingScreen,
-    );
+    // TODO: implement build
+    throw UnimplementedError();
   }
 }

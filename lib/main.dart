@@ -10,19 +10,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   db = await AppDatabase().initDB();
-  tableIsEmpty();
+
   
 
   runApp(const MyApp());
 }
 
-void tableIsEmpty() async {
-  int? count =
-      Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM users'));
-  print(count);
-  if (count! > 0) {
-    landingScreen = HomeScreen();
-  } else {
-    landingScreen = WelcomeScreen();
-  }
-}
+
+

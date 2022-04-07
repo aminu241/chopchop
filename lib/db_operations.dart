@@ -50,7 +50,7 @@ class DBOperations {
     });
   }
 
-  Future<List<Map<String, Object?>>> getLastUser() {
+ Future<List<Map<String, Object?>>> getLastUser() {
     var lastUser =
         _database.rawQuery("SELECT * FROM table ORDER BY column DESC LIMIT 1");
     print(lastUser);
