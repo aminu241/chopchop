@@ -1,219 +1,204 @@
 import 'package:chopchop/db_operations.dart';
 import 'package:chopchop/global.dart';
-import 'package:flutter/material.dart';
+import 'package:chopchop/myapp.dart';
+import 'package:chopchop/screens/home/home_screen.dart';
 import 'package:chopchop/screens/login/login_screen.dart';
-import 'package:chopchop/screens/welcome/welcome_screen.dart';
+import 'package:chopchop/user.dart';
+import 'package:flutter/material.dart';
 
 class SignupScreen extends StatelessWidget {
+  String firstname = '';
+  String lastname = '';
+  String email = '';
+  String password = '';
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     Size size = MediaQuery.of(context).size;
-    String firstname = '';
-    String lastname = '';
-    String email = '';
 
-    
     return Scaffold(
-      body: Container(
-        width: size.width,
-        height: size.height,
+      backgroundColor: Colors.black,
+      body: SingleChildScrollView(
         child: Stack(
           children: <Widget>[
             Container(
-              decoration: new BoxDecoration(
-                image: new DecorationImage(
-                    fit: BoxFit.fill,
-                    image: AssetImage("assets/images/background.jpeg"),
-                    colorFilter: ColorFilter.mode(
-                        Colors.black87.withOpacity(0.5), BlendMode.hardLight)),
-              ),
+              decoration: const BoxDecoration(
+                  // image: DecorationImage(
+                  //     fit: BoxFit.fill,
+                  //     image: const AssetImage("assets/images/background.jpeg"),
+                  //     colorFilter: ColorFilter.mode(
+                  //         Colors.black87.withOpacity(0.5), BlendMode.hardLight)),
+                  ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
-                    height: size.height * 0.2,
-
-                    child: Column(children: [
-                      SizedBox(
-                        height: 40,
-                      ),
-                      Row(children: [
-                        BackButton(
-                          color: Colors.white,
-                        )
-                      ]),
-                      const Text(
-                        "Welcome Back",
-                        style: const TextStyle(
-                            fontSize: 35,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                      const Text(
-                        "Login to your account",
-                        style: const TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.white),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
+                  Column(children: [
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Row(children: const [
+                      BackButton(
+                        color: Colors.white,
+                      )
                     ]),
-                    //color: Colors.white,
-                  ),
+                    const Text(
+                      "Welcome Back",
+                      style: TextStyle(
+                          fontSize: 35,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                    const Text(
+                      "Login to your account",
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.white),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ]),
                   Container(
-                    height: size.height * 0.8,
+                    height: size.height * 0.7,
                     width: size.width,
                     decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
-                        topLeft: const Radius.circular(50),
+                        topLeft: Radius.circular(50),
                       ),
                     ),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 70,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 5),
-                            width: size.width * 0.8,
-                            decoration: BoxDecoration(
-                                color: Color.fromRGBO(211, 211, 211, 100),
-                                borderRadius: BorderRadius.circular(29)),
-                            child: TextField(
-                              onChanged: (value) {
-                                firstname = value;
-                              },
-                              decoration: InputDecoration(
-                                hintText: "First Name",
-                                hintStyle: TextStyle(
-                                    color: kPrimaryLightColor,
-                                    fontWeight: FontWeight.bold),
-                                border: InputBorder.none,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 5),
-                            width: size.width * 0.8,
-                            decoration: BoxDecoration(
-                                color: Color.fromRGBO(211, 211, 211, 100),
-                                borderRadius: BorderRadius.circular(29)),
-                            child: TextField(
-                              onChanged: (value) {
-                                lastname = value;
-                              },
-                              decoration: InputDecoration(
-                                hintText: "Last Name",
-                                hintStyle: TextStyle(
-                                    color: kPrimaryLightColor,
-                                    fontWeight: FontWeight.bold),
-                                border: InputBorder.none,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 5),
-                            width: size.width * 0.8,
-                            decoration: BoxDecoration(
-                                color: Color.fromRGBO(211, 211, 211, 100),
-                                borderRadius: BorderRadius.circular(29)),
-                            child: TextField(
-                              onChanged: (value) {
-                                email = value;
-                              },
-                              decoration: InputDecoration(
-                                hintText: "Email",
-                                hintStyle: TextStyle(
-                                    color: kPrimaryLightColor,
-                                    fontWeight: FontWeight.bold),
-                                border: InputBorder.none,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 5),
-                            width: size.width * 0.8,
-                            decoration: BoxDecoration(
-                                color: Color.fromRGBO(211, 211, 211, 100),
-                                borderRadius: BorderRadius.circular(29)),
-                            child: TextField(
-                              obscureText: true,
-                              onChanged: (value) {},
-                              decoration: InputDecoration(
-                                suffixIcon: Icon(
-                                  Icons.visibility,
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 5),
+                          width: size.width * 0.8,
+                          decoration: BoxDecoration(
+                              color: const Color.fromRGBO(211, 211, 211, 100),
+                              borderRadius: BorderRadius.circular(29)),
+                          child: TextField(
+                            onChanged: (value) {
+                              firstname = value;
+                              print(firstname);
+                            },
+                            decoration: const InputDecoration(
+                              hintText: "First Name",
+                              hintStyle: TextStyle(
                                   color: kPrimaryLightColor,
-                                ),
-                                hintText: "Password",
-                                hintStyle: TextStyle(
-                                    color: kPrimaryLightColor,
-                                    fontWeight: FontWeight.bold),
-                                border: InputBorder.none,
-                              ),
+                                  fontWeight: FontWeight.bold),
+                              border: InputBorder.none,
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 5),
-                            width: size.width * 0.8,
-                            decoration: BoxDecoration(
-                                color: Color.fromRGBO(211, 211, 211, 100),
-                                borderRadius: BorderRadius.circular(29)),
-                            child: TextField(
-                              obscureText: true,
-                              onChanged: (value) {},
-                              decoration: InputDecoration(
-                                suffixIcon: Icon(
-                                  Icons.visibility,
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 5),
+                          width: size.width * 0.8,
+                          decoration: BoxDecoration(
+                              color: const Color.fromRGBO(211, 211, 211, 100),
+                              borderRadius: BorderRadius.circular(29)),
+                          child: TextField(
+                            onChanged: (value) {
+                              lastname = value;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: "Last Name",
+                              hintStyle: TextStyle(
                                   color: kPrimaryLightColor,
-                                ),
-                                hintText: "Confirm Password",
-                                hintStyle: TextStyle(
-                                    color: kPrimaryLightColor,
-                                    fontWeight: FontWeight.bold),
-                                border: InputBorder.none,
-                              ),
+                                  fontWeight: FontWeight.bold),
+                              border: InputBorder.none,
                             ),
                           ),
                         ),
-                        SizedBox(height: 5),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 5),
+                          width: size.width * 0.8,
+                          decoration: BoxDecoration(
+                              color: const Color.fromRGBO(211, 211, 211, 100),
+                              borderRadius: BorderRadius.circular(29)),
+                          child: TextField(
+                            onChanged: (value) {
+                              email = value;
+                            },
+                            decoration: const InputDecoration(
+                              hintText: "Email",
+                              hintStyle: TextStyle(
+                                  color: kPrimaryLightColor,
+                                  fontWeight: FontWeight.bold),
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 5),
+                          width: size.width * 0.8,
+                          decoration: BoxDecoration(
+                              color: const Color.fromRGBO(211, 211, 211, 100),
+                              borderRadius: BorderRadius.circular(29)),
+                          child: TextField(
+                            obscureText: true,
+                            onChanged: (value) {
+                              password = value;
+                            },
+                            decoration: const InputDecoration(
+                              suffixIcon: Icon(
+                                Icons.visibility,
+                                color: kPrimaryLightColor,
+                              ),
+                              hintText: "Password",
+                              hintStyle: TextStyle(
+                                  color: kPrimaryLightColor,
+                                  fontWeight: FontWeight.bold),
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 5),
+                          width: size.width * 0.8,
+                          decoration: BoxDecoration(
+                              color: const Color.fromRGBO(211, 211, 211, 100),
+                              borderRadius: BorderRadius.circular(29)),
+                          child: TextField(
+                            obscureText: true,
+                            onChanged: (value) {},
+                            decoration: const InputDecoration(
+                              suffixIcon: Icon(
+                                Icons.visibility,
+                                color: kPrimaryLightColor,
+                              ),
+                              hintText: "Confirm Password",
+                              hintStyle: TextStyle(
+                                  color: kPrimaryLightColor,
+                                  fontWeight: FontWeight.bold),
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 5),
                         Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("Remember me"),
-                              SizedBox(
+                              const Text("Remember me"),
+                              const SizedBox(
                                 width: 100,
                               ),
                               FlatButton(
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                     vertical: 5, horizontal: 5),
                                 color: kPrimaryColor,
                                 onPressed: () {},
-                                child: Text(
+                                child: const Text(
                                   "Forgot Password",
                                   style: TextStyle(
                                       color: Colors.green,
@@ -222,21 +207,38 @@ class SignupScreen extends StatelessWidget {
                                 ),
                               )
                             ]),
-                        SizedBox(height: 70),
-                        Container(
+                        // const SizedBox(height: 70),
+                        SizedBox(
                             width: size.width * 0.8,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(29),
                               child: FlatButton(
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                     vertical: 20, horizontal: 40),
                                 color: kPrimaryLightColor,
                                 onPressed: () {
-                                  DBOperations(db)
-                                      .insertRecord(firstname, lastname);
+                                  print("object");
+                                  DBOperations(db).insertRecord(
+                                      firstname, lastname, email, password);
+                                          loggedInUser = User(
+                                      id: DateTime.now().millisecond,
+                                      first_name: firstname,
+                                      last_name: lastname,
+                                      email: email,
+                                      password: password);
+                                  print(firstname);
                                   print("added $firstname $lastname");
+                                  MyApp().homeScreen = HomeScreen();
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return HomeScreen();
+                                      },
+                                    ),
+                                  );
                                 },
-                                child: Text(
+                                child: const Text(
                                   "Sign Up",
                                   style: TextStyle(
                                       color: kPrimaryColor,
@@ -245,17 +247,17 @@ class SignupScreen extends StatelessWidget {
                                 ),
                               ),
                             )),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Already have an account?"),
-                            SizedBox(
+                            const Text("Already have an account?"),
+                            const SizedBox(
                               width: 2,
                             ),
                             //FlatButton("Sign up"),
                             FlatButton(
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   vertical: 5, horizontal: 5),
                               color: kPrimaryColor,
                               onPressed: () {
@@ -268,7 +270,7 @@ class SignupScreen extends StatelessWidget {
                                   ),
                                 );
                               },
-                              child: Text(
+                              child: const Text(
                                 "Login",
                                 style: TextStyle(
                                     color: Colors.green,

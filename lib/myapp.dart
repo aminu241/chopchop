@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'screens/welcome/welcome_screen.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+   MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
+
+  Widget homeScreen = WelcomeScreen();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,7 +18,7 @@ class MyApp extends StatelessWidget {
         //primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: WelcomeScreen(),
+      home: homeScreen,
     );
   }
 }
