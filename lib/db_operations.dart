@@ -1,6 +1,3 @@
-import 'package:chopchop/app_database.dart';
-import 'package:chopchop/global.dart';
-import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:chopchop/user.dart';
 
@@ -50,21 +47,28 @@ class DBOperations {
     });
   }
 
- Future<List<Map<String, Object?>>> getLastUser() {
-    var lastUser =
-        _database.rawQuery("SELECT * FROM table ORDER BY column DESC LIMIT 1");
-    print(lastUser);
-    return lastUser;
+
+
+    //   Future<List<String>> queryAllRows() async {
+    //   Database db = await instance._initDatabase();
+    //   db.query(table ,columns: [columnname]).then((data){
+    //     List<Map<String,dynamic>> s = data;
+    //     List<String> list = new List();
+    //     for(var x in s){
+    //       x.forEach((k,v)=>list.add(v));
+    //     }
+    //   });
+    //   return list;
+    // }
+
+    //   Future<User> getLogin(String user, String password) async {
+
+    //   var res = await _database.rawQuery("SELECT * FROM user WHERE username = '$user' and password = '$password'");
+
+    //   if (res.length > 0) {
+    //     return new User.fromMap(res.first);
+    //   }
+    //   return null;
+    // }
   }
 
-  //   Future<User> getLogin(String user, String password) async {
-
-  //   var res = await _database.rawQuery("SELECT * FROM user WHERE username = '$user' and password = '$password'");
-
-  //   if (res.length > 0) {
-  //     return new User.fromMap(res.first);
-  //   }
-  //   return null;
-  // }
-
-}
