@@ -2,11 +2,25 @@ import 'package:chopchop/db_operations.dart';
 import 'package:chopchop/global.dart';
 import 'package:chopchop/screens/welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 const kPrimaryColor = Colors.white;
 const kPrimaryLightColor = Color(0xff2EB886);
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+
+  @override
+  void initState() {
+    // userDbIsEmpty();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -34,9 +48,10 @@ class HomeScreen extends StatelessWidget {
                 children: <Widget>[
                   Container(
                       padding: const EdgeInsets.all(25),
-                      child: Text(
-                        loggedInUser.first_name,
-                        style: const TextStyle(
+                      child: const Text(
+                        "Welcome",
+                        // loggedInUser.first_name,
+                        style: TextStyle(
                             fontWeight: FontWeight.normal,
                             color: Colors.white,
                             fontSize: 30),
@@ -52,9 +67,13 @@ class HomeScreen extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               vertical: 20, horizontal: 40),
                           color: kPrimaryLightColor,
-                          onPressed: () {
-                            landingScreen = WelcomeScreen();
+                          onPressed: () async {
+                            // landingScreen = WelcomeScreen();
                             DBOperations(db).users().toString();
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.remove('email');
+
                             Navigator.push(
                               context,
                               MaterialPageRoute(

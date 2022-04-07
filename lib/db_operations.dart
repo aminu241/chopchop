@@ -37,6 +37,21 @@ class DBOperations {
     
   }
 
+void lastUserByEmail(String email) async {
+    final List<Map<String, dynamic>> user =
+        await _database.query('users', limit: 1, orderBy: "id", where:  "email = $email");
+
+    List.generate(user.length, (i) {
+      print(user[i]);
+      loggedInUser = User(
+          id: user[i]["id"],
+          first_name: user[i]['first_name'],
+          last_name: user[i]['last_name'],
+          email: user[i]['email'],
+          password: user[i]['password']);
+    });
+  }
+
   Future<List<User>> users() async {
     final List<Map<String, dynamic>> maps = await _database.query(
       'users',

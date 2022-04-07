@@ -1,10 +1,10 @@
 import 'package:chopchop/db_operations.dart';
 import 'package:chopchop/global.dart';
-import 'package:chopchop/myapp.dart';
 import 'package:chopchop/screens/home/home_screen.dart';
 import 'package:chopchop/screens/login/login_screen.dart';
 import 'package:chopchop/user.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignupScreen extends StatelessWidget {
   String firstname = '';
@@ -215,7 +215,7 @@ class SignupScreen extends StatelessWidget {
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 20, horizontal: 40),
                                 color: kPrimaryLightColor,
-                                onPressed: () {
+                                onPressed: () async{
                                   print("object");
                                   DBOperations(db).insertRecord(
                                       firstname, lastname, email, password);
@@ -225,6 +225,8 @@ class SignupScreen extends StatelessWidget {
                                       last_name: lastname,
                                       email: email,
                                       password: password);
+                                                  SharedPreferences prefs = await SharedPreferences.getInstance();
+            prefs.setString('email', email);
                                   print(firstname);
                                   print("added $firstname $lastname");
                                   // MyApp().homeScreen = HomeScreen();

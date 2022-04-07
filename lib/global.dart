@@ -5,4 +5,4 @@ import 'package:sqflite/sqflite.dart';
 
 late final Database db;
 late Widget landingScreen = WelcomeScreen();
-late User loggedInUser;
+late User loggedInUser ;
