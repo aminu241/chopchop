@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:chopchop/screens/components/body.dart';
-
+import 'package:chopchop/screens/welcome/welcome_screen.dart';
 
 const kPrimaryColor = Colors.white;
 const kPrimaryLightColor = Color(0xff2EB886);
@@ -38,7 +38,6 @@ class HomeScreen extends StatelessWidget {
                         color: Colors.white,
                         fontSize: 67),
                   )),
-          
               SizedBox(
                 height: size.width * 0.02,
               ),
@@ -56,7 +55,6 @@ class HomeScreen extends StatelessWidget {
                           MaterialPageRoute(
                             builder: (context) {
                               return WelcomeScreen();
-
                             },
                           ),
                         );
