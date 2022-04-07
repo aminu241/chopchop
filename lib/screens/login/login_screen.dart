@@ -156,7 +156,7 @@ class LoginScreen extends StatelessWidget {
                                     await SharedPreferences.getInstance();
                                
                                 prefs.setString('email', email);
-                                DBOperations(db).lastUserByEmail(email);
+                
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(

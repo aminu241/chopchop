@@ -12,16 +12,14 @@ class User {
       required this.email,
       required this.password});
 
-
-
-
-        Map<String, dynamic> toMap() {
-    var map = Map<String, dynamic>();
+  Map<String, dynamic> toMap() {
+    var map = <String, dynamic>{};
     map["first_name"] = first_name;
     map["last_name"] = last_name;
     map["email"] = email;
     map["password"] = password;
- 
+
     return map;
   }
+
 }

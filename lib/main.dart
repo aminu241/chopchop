@@ -21,11 +21,7 @@ Future<void> main() async {
 }
 
 
-// void getLoggedInUser() async {
-//   SharedPreferences prefs = await SharedPreferences.getInstance();
-//   String? email = prefs.getString("email");
-//   DBOperations(db).lastUserByEmail(email!);
-// }
+
 
 // void userDbIsEmpty() async {
 //   int? count =

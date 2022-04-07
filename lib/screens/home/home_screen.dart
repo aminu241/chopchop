@@ -1,5 +1,3 @@
-import 'package:chopchop/db_operations.dart';
-import 'package:chopchop/global.dart';
 import 'package:chopchop/screens/welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,10 +12,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-
   @override
   void initState() {
-    // userDbIsEmpty();
+
+
     super.initState();
   }
 
@@ -50,7 +48,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.all(25),
                       child: const Text(
                         "Welcome",
-                        // loggedInUser.first_name,
                         style: TextStyle(
                             fontWeight: FontWeight.normal,
                             color: Colors.white,
@@ -68,8 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               vertical: 20, horizontal: 40),
                           color: kPrimaryLightColor,
                           onPressed: () async {
-                            // landingScreen = WelcomeScreen();
-                            DBOperations(db).users().toString();
+
                             SharedPreferences prefs =
                                 await SharedPreferences.getInstance();
                             prefs.remove('email');

@@ -1,6 +1,3 @@
-import 'package:chopchop/db_operations.dart';
-import 'package:chopchop/global.dart';
-import 'package:chopchop/main.dart';
 import 'package:chopchop/screens/welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -16,8 +13,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    DBOperations(db).lastUser();
-    // userDbIsEmpty();
     super.initState();
   }
 
