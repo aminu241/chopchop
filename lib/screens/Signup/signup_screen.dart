@@ -228,7 +228,7 @@ class SignupScreen extends StatelessWidget {
                                       password: password);
                                   print(firstname);
                                   print("added $firstname $lastname");
-                                  MyApp().homeScreen = HomeScreen();
+                                  // MyApp().homeScreen = HomeScreen();
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(

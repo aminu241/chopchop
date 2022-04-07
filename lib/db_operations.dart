@@ -5,7 +5,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:chopchop/user.dart';
 
 class DBOperations {
-  Database _database;
+  final Database _database;
 
   DBOperations(this._database);
 
@@ -21,7 +21,6 @@ class DBOperations {
 
     await _database.insert('users', userMap,
         conflictAlgorithm: ConflictAlgorithm.replace);
-
   }
 
   Future<void> deleteRecord(String firstName, String lastName) async {
@@ -40,6 +39,7 @@ class DBOperations {
 
     // Convert the List<Map<String, dynamic> into a List<Dog>.
     return List.generate(maps.length, (i) {
+      print(maps[i]);
       return User(
         id: maps[i]['id'],
         first_name: maps[i]['first_name'],
@@ -50,10 +50,12 @@ class DBOperations {
     });
   }
 
-  //   Future<List<User>> getLastUsers() async {
-  //   final Map<String, dynamic> last_users = await _database.rawQuery()
-
-  // }
+  Future<List<Map<String, Object?>>> getLastUser() {
+    var lastUser =
+        _database.rawQuery("SELECT * FROM table ORDER BY column DESC LIMIT 1");
+    print(lastUser);
+    return lastUser;
+  }
 
   //   Future<User> getLogin(String user, String password) async {
 

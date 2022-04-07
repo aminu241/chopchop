@@ -1,13 +1,27 @@
+import 'package:chopchop/global.dart';
+import 'package:chopchop/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
 
 import 'screens/welcome/welcome_screen.dart';
 
-class MyApp extends StatelessWidget {
-   MyApp({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
 
-  Widget homeScreen = WelcomeScreen();
+
+
+  @override
+  void initState() {
+  
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +32,7 @@ class MyApp extends StatelessWidget {
         //primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: homeScreen,
+      home: landingScreen,
     );
   }
 }
